@@ -28,7 +28,9 @@ const Settings = () => {
         >
           Settings
         </h1>
-        <Logout />
+        <div className="md:hidden">
+          <Logout variant={"destructive"} />
+        </div>
       </header>
       <div className="p-4 flex flex-col gap-3">
         <div className="flex gap-2 p-4 bg-accent rounded-xl">
@@ -51,7 +53,7 @@ const Settings = () => {
         </div>
         <div className="md:hidden flex p-4 bg-accent justify-between items-center rounded-xl">
           <div className="">Theme</div>
-          <div className="flex items-center justify-evenly">
+          <div className="flex items-center justify-between gap-3">
             <div className="">Dark</div>
             <ThemeSwitcher />
           </div>
