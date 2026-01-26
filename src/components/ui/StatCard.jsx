@@ -86,9 +86,8 @@ const StatCard = ({
           <span
             className={`text-xs space-x-0.5  px-1 rounded-sm flex items-center text-muted-foreground tabular-nums  `}
           >
-            <CircleArrowUp size={14} />
-
-            <span>20%</span>
+            {/* <CircleArrowUp size={14} /> */}
+            {/* <span>20%</span> */}
           </span>
         </div>
       </div>

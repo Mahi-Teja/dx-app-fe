@@ -43,8 +43,8 @@ const CategoryCard = ({ onDelete, category }) => {
             text-xs font-medium capitalize
             ${
               isIncome
-                ? "bg-success/15 text-success"
-                : "bg-destructive/15 text-destructive"
+                ? "bg-income/15 text-income"
+                : "bg-expense/15 text-expense"
             }
           `}
         >
