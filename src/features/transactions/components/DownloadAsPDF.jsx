@@ -1,8 +1,4 @@
 import React from "react";
-import pdfMake from "pdfmake/build/pdfmake.min";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export const DownloadTransactionsPDF = ({
   transactions,
@@ -41,7 +37,12 @@ export const DownloadTransactionsPDF = ({
     }
   };
 
-  const generatePDF = () => {
+  const generatePDF = async () => {
+    const pdfMake = (await import("pdfmake/build/pdfmake.min")).default;
+    const pdfFonts = await import("pdfmake/build/vfs_fonts");
+
+    pdfMake.vfs = pdfFonts.pdfMake.vfs;
+    pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs;
     if (!txns.length) {
       alert("No transactions to export");
       return;
