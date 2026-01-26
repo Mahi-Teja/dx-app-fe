@@ -14,14 +14,19 @@ const Dashboard = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Use optional chaining and default values for robustness
-  const { transactions = [], summary = {} } = useSelector((s) => s.data);
+  const { todayTransactions: transactions = [], summary = {} } = useSelector(
+    (s) => s.data,
+  );
   const accounts = useSelector((s) => s.accounts);
   const categories = useSelector((s) => s.categories);
 
   // 🔁 Fetch dashboard whenever date changes
   useEffect(() => {
-    // pass selectedDate to thunk
-    dispatch(fetchDashboardData({ date: selectedDate }));
+    const timer = setTimeout(() => {
+      dispatch(fetchDashboardData({ date: selectedDate }));
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, [dispatch, selectedDate]);
 
   // 🔁 Map raw transactions to View Models (Injecting Account/Category names)
@@ -50,11 +55,13 @@ const Dashboard = () => {
           iconKey="wallet"
         />
         <StatCard
+          className={`bg-emerald-400/20`}
           label="Income"
           value={summary?.income || 0}
           iconKey="incomeTrend"
         />
         <StatCard
+          className={`bg-red-400/20`}
           label="Expense"
           value={summary?.expense || 0}
           iconKey="expenseTrend"
