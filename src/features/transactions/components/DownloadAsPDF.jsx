@@ -38,11 +38,16 @@ export const DownloadTransactionsPDF = ({
   };
 
   const generatePDF = async () => {
-    const pdfMake = (await import("pdfmake/build/pdfmake.min")).default;
-    const pdfFonts = await import("pdfmake/build/vfs_fonts");
+    const pdfMakeModule = await import("pdfmake/build/pdfmake.min.js");
+    const pdfFontsModule = await import("pdfmake/build/vfs_fonts.js");
 
-    pdfMake.vfs = pdfFonts.pdfMake.vfs;
-    pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs;
+    const pdfMake = pdfMakeModule.default || pdfMakeModule;
+
+    pdfMake.vfs =
+      pdfFontsModule.pdfMake?.vfs ||
+      pdfFontsModule.vfs ||
+      pdfFontsModule.default;
+
     if (!txns.length) {
       alert("No transactions to export");
       return;
@@ -148,7 +153,7 @@ export const DownloadTransactionsPDF = ({
     ]);
 
     const documentDefinition = {
-      pageOrientation: "potrait",
+      pageOrientation: "portrait",
       pageSize: "A4",
       pageMargins: [24, 32, 24, 32],
 
