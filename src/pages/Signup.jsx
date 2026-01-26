@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { signup } from "@/features/auth/api/auth";
+import GoogleAuthButton from "@/features/auth/components/GoogleAuthButton";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Signup = () => {
       toast.error(
         error?.response?.data?.error?.message ||
           error?.message ||
-          "Signup failed"
+          "Signup failed",
       );
     }
   };
@@ -182,8 +183,19 @@ const Signup = () => {
             {isSubmitting ? "Creating account..." : "Sign up"}
           </Button>
         </form>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">
+              Or continue with
+            </span>
+          </div>
+        </div>
 
-        {/* Footer */}
+        <GoogleAuthButton />
+
         <p className="text-sm text-center text-muted-foreground">
           Already have an account?{" "}
           <Link to="/login" className="text-primary underline">
