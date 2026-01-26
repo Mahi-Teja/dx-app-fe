@@ -1,6 +1,6 @@
 import { ThemeSwitcher } from "@/components/Toggle";
 import Logout from "@/features/auth/components/Logout";
-import { Twitter } from "lucide-react";
+import { Github, Mail, Twitter } from "lucide-react";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,68 +9,137 @@ const Settings = () => {
   const user = useSelector((s) => s.user);
 
   return (
-    <section className="space-y-5 pb-10">
-      {/* Page title */}
-      <header
-        className="
-        sticky top-0 z-10
-        bg-background
-         bg-whitew
-        text-lg font-semibold px-4
-        md:px-6  py-3
-        border-b border-border
-        flex items-center justify-between
-      "
-      >
-        <h1
-          className=" text-lg md:text-xl
-      "
-        >
-          Settings
-        </h1>
-        <div className="md:hidden">
-          <Logout variant={"destructive"} />
+    <section className="min-h-screen  bg-background">
+      {/* Header */}
+      <header className="sticky top-0 z-10 bg-background border-b border-border">
+        <div className="flex items-center justify-between px-4 md:px-6 py-4">
+          <h1 className="text-lg md:text-xl font-semibold">Settings</h1>
+          <div className="md:hidden">
+            <Logout variant="destructive" />
+          </div>
         </div>
       </header>
-      <div className="p-4 flex flex-col gap-3">
-        <div className="flex gap-2 p-4 bg-accent rounded-xl">
-          <div className="h-12 w-12 rounded-full bg-primary overflow-hidden">
+
+      {/* Content */}
+      <div className=" mx-auto  p-4 md:p-6 space-y-4 md:space-y-6">
+        {/* Profile Card */}
+        <div className="rounded-xl border bg-card p-4 flex items-center gap-4">
+          <div className="h-12 w-12 rounded-full overflow-hidden bg-muted shrink-0">
             <img
-              className=""
+              className="h-full w-full object-cover"
               src={
                 user?.user?.avatar ||
-                "https://api.dicebear.com/9.x/thumbs/svg?seed=default" ||
-                null
+                "https://api.dicebear.com/9.x/thumbs/svg?seed=default"
               }
               alt="avatar"
-              srcSet=""
             />
           </div>
-          <div className="">
-            <div className="">{user?.user?.username || "Username"}</div>
-            <div className="">{user?.user?.email || "email"}</div>
+          <div className="min-w-0">
+            <div className="font-medium truncate">
+              {user?.user?.username || "Username"}
+            </div>
+            <div className="text-sm text-muted-foreground truncate">
+              {user?.user?.email || "email"}
+            </div>
           </div>
         </div>
-        <div className="md:hidden flex p-4 bg-accent justify-between items-center rounded-xl">
-          <div className="">Theme</div>
-          <div className="flex items-center justify-between gap-3">
-            <div className="">Dark</div>
-            <ThemeSwitcher />
+
+        {/* Preferences */}
+        <div className="rounded-xl border bg-card divide-y">
+          <div className="px-4 py-3">
+            <div className="text-sm font-medium">Preferences</div>
+          </div>
+
+          {/* Theme */}
+          <div className="flex items-center justify-between px-4 py-4">
+            <div>
+              <div className="text-sm font-medium">Theme</div>
+              <div className="text-xs text-muted-foreground">
+                Toggle between light and dark mode
+              </div>
+            </div>
+            <ThemeSwitcher isExpand={true} />
+          </div>
+          {/* Currency */}
+          <div className="flex items-center justify-between px-4 py-4">
+            <div>
+              <div className="text-sm font-medium">Currency</div>
+              <div className="text-xs text-muted-foreground">
+                current selected currency
+              </div>
+            </div>
+            INR
           </div>
         </div>
-        <div className="flex p-4 bg-accent justify-between rounded-xl">
-          <div className="text-sm text-muted-foreground flex items-center">
-            Report a bug '🐞'?{" "}
+
+        {/* Data */}
+        <div className="rounded-xl border bg-card divide-y">
+          <div className="px-4 py-3">
+            <div className="text-sm font-medium">Data</div>
           </div>
+
+          {/* Export */}
+          <div className="flex items-center justify-between px-4 py-4">
+            <div>
+              <div className="text-sm font-medium">Export transactions</div>
+              <div className="text-xs text-muted-foreground">
+                Download your data as a PDF
+              </div>
+            </div>
+            <Link
+              to="/download/transactions"
+              className="text-sm text-primary hover:underline"
+            >
+              Download
+            </Link>
+          </div>
+        </div>
+
+        {/* Support */}
+        <div className="rounded-xl border bg-card divide-y">
+          <div className="px-4 py-3">
+            <div className="text-sm font-medium">Support</div>
+          </div>
+
+          {/* Bug report */}
+          <div className="flex items-center justify-between px-4 py-4">
+            <div>
+              <div className="text-sm font-medium">Report a bug</div>
+              <div className="text-xs text-muted-foreground">
+                Found something broken?
+              </div>
+            </div>
+            <div className="flex gap-4 ">
+              <a
+                href="mailto:mahineeli123@gmail.com?subject=DX%20Tracker%20Support"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                <Mail size={18} />
+              </a>
+              <a
+                href="https://github.com/Mahi-Teja/dx-app-fe/issues/new"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="text-center text-xs text-muted-foreground pb-14 pt-2 md:pt-4 md:pb-0 ">
+          made with ❤️ by{" "}
           <a
-            href="https://x.com/messages/compose?recipient_id=empty_codes"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center text-xs gap-4"
+            className="underline"
+            target="blank"
+            href="https://www.anempty.com"
           >
-            Reach out on <Twitter />
+            Mahi
           </a>
-        </div>
+        </footer>
       </div>
     </section>
   );
