@@ -75,7 +75,7 @@ export const DownloadTransactionsPDF = ({
       if (tx.type === "expense") totalExpense += amount;
 
       const accountText = isTransfer
-        ? `${tx?.account?.name || "—"} → ${tx?.toAccount?.name || "—"}`
+        ? `${tx?.account?.name || "—"} -> ${tx?.toAccount?.name || "—"}`
         : tx?.account?.name || "—";
 
       const signedAmount =

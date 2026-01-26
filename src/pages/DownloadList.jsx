@@ -13,11 +13,7 @@ export const DownloadList = () => {
   }, [items, accounts, categories]);
 
   return (
-    /* 1. 'min-h-screen' ensures it centers vertically on the whole page 
-       2. 'w-full' ensures it has room to push the card to the middle
-    */
     <section className="min-h-[80vh] w-full flex flex-col justify-center items-center p-4">
-      {/* 3. 'w-full max-w-md' ensures the card is responsive but doesn't get too wide */}
       <div className="w-full max-w-md">
         <div className="rounded-xl border bg-card shadow-sm">
           {/* Header */}

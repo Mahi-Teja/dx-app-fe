@@ -68,7 +68,9 @@ const Settings = () => {
                 current selected currency
               </div>
             </div>
-            INR
+            <div className="px-3 py-1 rounded-md border text-sm font-medium bg-muted">
+              INR
+            </div>
           </div>
         </div>
 
