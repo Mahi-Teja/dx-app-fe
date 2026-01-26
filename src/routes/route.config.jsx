@@ -9,6 +9,7 @@ import Settings from "@/pages/Settings";
 import EmptyStateNoAction from "@/components/EmptyStateNoAction";
 import NotFound from "@/pages/NotFound";
 import SignOut from "@/pages/SignOut";
+import { DownloadList } from "@/pages/DownloadList";
 
 const routes = [
   {
@@ -85,6 +86,11 @@ const routes = [
         path: "/budgets",
         element: <EmptyStateNoAction />,
         title: "budgets",
+      },
+      {
+        path: "/download/transactions",
+        element: <DownloadList />,
+        title: "download.transactions",
       },
     ],
   },

@@ -141,7 +141,7 @@ const Login = () => {
                       type="button"
                       onClick={() =>
                         setLoginType(
-                          loginType === "username" ? "email" : "username"
+                          loginType === "username" ? "email" : "username",
                         )
                       }
                       className="text-primary font-medium underline-offset-4 hover:underline"

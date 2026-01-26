@@ -47,7 +47,7 @@ export function ThemeSwitcher({ isExpand }) {
     <button
       onClick={toggleTheme}
       className="
-    w-full
+    
     flex items-center gap-2
     rounded-lg px-3 py-2
     border border-border
