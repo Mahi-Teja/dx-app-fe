@@ -41,7 +41,7 @@ export const DownloadList = () => {
             <div className="pt-2">
               <DownloadTransactionsPDF
                 transactions={transactions}
-                fileName="dx-transactions.pdf"
+                fileName={`transactions-report-${new Date().toISOString().slice(0, 10)}_${Date.now()}.pdf`}
               />
             </div>
           </div>
