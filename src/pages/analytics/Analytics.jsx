@@ -4,7 +4,7 @@ import { SummaryCards } from "./SummaryCards";
 import { TitleHeader } from "@/components/TitleHeader";
 import { useSelector } from "react-redux";
 import { ChartBarInteractive } from "@/features/charts/BarChartInteractive";
-import { ChartBarMultiple } from "@/features/charts/BarChartCompare";
+import { BarChartCompare } from "@/features/charts/BarChartCompare";
 import { ChartAreaTrends } from "@/features/charts/AreaChartTrends";
 import { ChartPieLabelCustom } from "@/features/charts/PieChart";
 import { ChartBarLabelCustom } from "@/features/charts/CustomBarVertical";
@@ -111,7 +111,7 @@ export const Analytics = () => {
             )}
 
             {trendView === TREND_VIEWS.COMPARE && (
-              <ChartBarMultiple
+              <BarChartCompare
                 showDate={window !== "yearly"}
                 trendView={trendView}
                 setTrendView={setTrendView}

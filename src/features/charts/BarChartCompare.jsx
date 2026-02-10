@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { TrendingUp } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
@@ -33,7 +32,7 @@ const chartConfig = {
   },
 };
 
-export function ChartBarMultiple({
+export function BarChartCompare({
   chart_data = [],
   insights = [],
   showSwitch = false,
