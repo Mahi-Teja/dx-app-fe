@@ -33,7 +33,7 @@ const TransactionCard = ({ txn }) => {
   if (["opening_balance"].includes(txn.type)) return null;
 
   return (
-    <article className="rounded-lg border border-border bg-card">
+    <article className="rounded-lg border border-border bg-muted">
       {/* ─────────────── Main Row ─────────────── */}
       <div
         className={`flex items-center gap-3 p-3 ${
@@ -42,7 +42,7 @@ const TransactionCard = ({ txn }) => {
       >
         {/* Icon */}
         <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent">
-          <span className="text-lg">{txn?.category?.emoji ?? "💸"}</span>
+          <span className="text-2xl">{txn?.category?.emoji ?? "💸"}</span>
           <span className="absolute -bottom-1 -right-1 rounded-full bg-background p-0.5 text-success">
             {txn?.type !== "transfer" ? (
               <ArrowUpRight

@@ -8,10 +8,6 @@ import { fetchUserTransactions } from "@/features/transactions/store/transaction
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import items2 from "@/utils/mock-transactions.json";
-const totalCount2 = items2.length;
-const limit2 = 10;
-const status2 = "success";
 const Transactions = () => {
   const dispatch = useDispatch();
   useEffect(() => {}, []);
