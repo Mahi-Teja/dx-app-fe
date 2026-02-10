@@ -15,7 +15,7 @@ const Settings = () => {
         <div className="flex items-center justify-between px-4 md:px-6 py-4">
           <h1 className="text-lg md:text-xl font-semibold">Settings</h1>
           <div className="md:hidden">
-            <Logout variant="destructive" className={"bg-muted"} />
+            <Logout variant="destructive" />
           </div>
         </div>
       </header>
