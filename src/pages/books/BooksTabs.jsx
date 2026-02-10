@@ -18,7 +18,7 @@ const BooksTabs = () => {
         </TabsList>
 
         {/* Context-aware triggers */}
-        <div className="flex gap-2">
+        <div className=" ">
           {activeTab === "accounts" && <AddAccountTrigger />}
           {activeTab === "categories" && <AddCategoryTrigger />}
         </div>

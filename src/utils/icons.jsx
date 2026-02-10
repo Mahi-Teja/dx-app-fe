@@ -46,6 +46,7 @@ import {
   WalletCards,
   PanelRightOpen,
   Settings,
+  ChartPie,
 } from "lucide-react";
 
 /**
@@ -131,6 +132,7 @@ const navigationIcons = {
   categories: LayoutGrid,
   budgets: HandCoins,
   reports: ChartNoAxesCombined,
+  analytics: ChartPie,
   accounts: WalletCards,
   settings: Settings,
 };

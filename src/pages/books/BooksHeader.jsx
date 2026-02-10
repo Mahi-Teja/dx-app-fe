@@ -9,7 +9,7 @@ const BooksHeader = () => {
         flex items-center justify-between
       "
     >
-      <h1 className="text-lg md:text-xl font-semibold">Organization</h1>
+      <h1 className="text-lg md:text-xl font-semibold">Organiser</h1>
     </header>
   );
 };

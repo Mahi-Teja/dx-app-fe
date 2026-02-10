@@ -8,6 +8,10 @@ import { fetchUserTransactions } from "@/features/transactions/store/transaction
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import items2 from "@/utils/mock-transactions.json";
+const totalCount2 = items2.length;
+const limit2 = 10;
+const status2 = "success";
 const Transactions = () => {
   const dispatch = useDispatch();
   useEffect(() => {}, []);
@@ -24,13 +28,13 @@ const Transactions = () => {
         start: "",
         end: "",
       },
-    }
+    },
   );
   const [page, setPage] = useState(1);
 
   // Store state
   const { items, totalCount, limit, status } = useSelector(
-    (s) => s.transactions
+    (s) => s.transactions,
   );
   const accounts = useSelector((s) => s.accounts);
   const categories = useSelector((s) => s.categories);
@@ -39,13 +43,14 @@ const Transactions = () => {
   const viewItems = useMemo(() => {
     return TxnFullList({ transactions: items, accounts, categories });
   }, [items, accounts, categories]);
+
   useEffect(() => {
     dispatch(
       fetchUserTransactions({
         page,
         limit,
         ...filters,
-      })
+      }),
     );
   }, [dispatch, page, limit, filters]);
 
@@ -81,6 +86,7 @@ const Transactions = () => {
   return (
     <section className="flex flex-col h-full">
       <TransactionsHeader
+        transactions={viewItems}
         filters={filters}
         onFiltersChange={(next) => {
           setPage(1);
@@ -89,7 +95,7 @@ const Transactions = () => {
       />
 
       {/* List */}
-      <div className="flex-1 overflow-y-auto px-4 md:px-6 py-4 space-y-3">
+      <div className="flex-1 overflow-y-auto px-4 pb-20 md:pb-2 md:px-6 py-4 space-y-3">
         {viewItems?.length > 0 ? (
           viewItems?.map((txn) => <TransactionCard key={txn?._id} txn={txn} />)
         ) : (
