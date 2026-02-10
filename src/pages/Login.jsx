@@ -38,6 +38,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginType, setLoginType] = useState("username"); // 'username' | 'email'
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     control,
@@ -161,33 +162,37 @@ const Login = () => {
             />
 
             {/* Password Field */}
+            {/* Password */}
             <Controller
               name="password"
               control={control}
+              rules={{
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+              }}
               render={({ field }) => (
                 <Field>
-                  <div className="flex items-center justify-between">
-                    <FieldLabel>Password</FieldLabel>
-                    {/* <Link
-                      to="/forgot-password"
-                      className="text-xs text-muted-foreground hover:text-primary underline"
+                  <FieldLabel>Password</FieldLabel>
+                  <div className="relative">
+                    <Input
+                      {...field}
+                      type={showPassword ? "text" : "password"}
+                      aria-invalid={!!errors.password}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((v) => !v)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground"
                     >
-                      Forgot?
-                    </Link> */}
+                      {showPassword ? "Hide" : "Show"}
+                    </button>
                   </div>
-
-                  <Input
-                    {...field}
-                    type="password"
-                    placeholder="••••••••"
-                    className={errors.password ? "border-red-500" : ""}
-                    autoComplete="current-password"
-                  />
-
+                  <FieldDescription>Minimum 8 characters</FieldDescription>
                   {errors.password && (
-                    <FieldError className="text-red-500 text-xs">
-                      {errors.password.message}
-                    </FieldError>
+                    <FieldError>{errors.password.message}</FieldError>
                   )}
                 </Field>
               )}
