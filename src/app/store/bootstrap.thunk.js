@@ -7,7 +7,7 @@ import { getDashboardData } from "@/lib/api-client";
 
 export const bootstrapApp = () => async (dispatch) => {
   try {
-    const startDate = new Date().toLocaleDateString();
+    const startDate = new Date();
     const [accountsRes, categoriesRes, dashboard] = await Promise.all([
       getUserAccounts(),
       getUserCategories(),
@@ -18,7 +18,7 @@ export const bootstrapApp = () => async (dispatch) => {
       setDashboard({
         transactions: dashboard?.activity?.today?.transactions ?? [],
         summary: dashboard?.summary ?? null,
-      })
+      }),
     );
 
     dispatch(setAccounts(accountsRes.data));

@@ -2,11 +2,24 @@ import { useRef } from "react";
 import { CalendarSearch, CalendarSync } from "lucide-react";
 import { arrowIcons, getIcon } from "@/utils/icons";
 
+const toDateOnly = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+const toInputValue = (date) => {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+};
+
 const DateNav = ({ selectedDate, setSelectedDate }) => {
-  const today = new Date();
+  const today = toDateOnly(new Date());
+  const safeSelectedDate = selectedDate
+    ? toDateOnly(new Date(selectedDate))
+    : today;
+
   const dateInputRef = useRef(null);
 
-  const isToday = selectedDate.toDateString() === today.toDateString();
+  const isToday = safeSelectedDate.getTime() === today.getTime();
 
   const goToToday = () => setSelectedDate(today);
 
@@ -18,21 +31,28 @@ const DateNav = ({ selectedDate, setSelectedDate }) => {
     });
 
   const changeDateBy = (offset) => {
-    const next = new Date(selectedDate);
+    const next = new Date(safeSelectedDate);
     next.setDate(next.getDate() + offset);
     setSelectedDate(next);
   };
 
   const openDatePicker = () => {
-    dateInputRef.current?.showPicker();
+    if (dateInputRef.current?.showPicker) {
+      dateInputRef.current.showPicker();
+    } else {
+      dateInputRef.current?.focus();
+      dateInputRef.current?.click();
+    }
   };
 
   const handleDateChange = (e) => {
-    setSelectedDate(new Date(e.target.value));
+    if (!e.target.value) return;
+    const [y, m, d] = e.target.value.split("-");
+    setSelectedDate(new Date(Number(y), Number(m) - 1, Number(d)));
   };
 
   return (
-    <section className="flex  items-center md:justify-between md:gap-3    ">
+    <section className="flex items-center md:justify-between md:gap-3">
       {/* Left: arrows + date */}
       <div className="flex items-center md:gap-2">
         <button
@@ -52,35 +72,33 @@ const DateNav = ({ selectedDate, setSelectedDate }) => {
               <CalendarSync size={16} />
             </button>
           )}
+
           <span className="mx-auto truncate justify-self-center">
-            {isToday ? (
-              <span className="">Today</span>
-            ) : (
-              formatDisplay(selectedDate)
-            )}
+            {isToday ? "Today" : formatDisplay(safeSelectedDate)}
           </span>
         </div>
 
         <button
           onClick={() => changeDateBy(1)}
-          className=" md:p-2 transition bg-secondary rounded-full cursor-pointer"
+          className="md:p-2 transition bg-secondary rounded-full cursor-pointer"
         >
           {getIcon(arrowIcons, "rightChevron")}
         </button>
       </div>
+
       <button
         onClick={openDatePicker}
         title="Pick a date"
-        className="relative flex items-center gap-2 px-2 py-1 text-sm font-medium text-secondary-foreground rounded-lg hover:bg-accent cursor-pointer"
+        className="relative p-2 text-secondary-foreground rounded-lg hover:bg-accent cursor-pointer"
       >
-        <span>{new Date(selectedDate).toLocaleDateString()}</span>
-        <CalendarSearch size={16} />
+        <CalendarSearch size={18} />
+
         {/* Hidden native date picker */}
         <input
           ref={dateInputRef}
           type="date"
-          className="absolute w-0 h-0 opacity-0 pointer-events-none "
-          value={selectedDate.toISOString().split("T")[0]}
+          className="absolute w-0 h-0 opacity-0 pointer-events-none"
+          value={toInputValue(safeSelectedDate)}
           onChange={handleDateChange}
         />
       </button>

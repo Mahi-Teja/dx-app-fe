@@ -53,13 +53,13 @@ const MobileBottomNav = () => {
 };
 
 const DesktopNavBar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   return (
     <aside
       className={`
         hidden md:flex flex-col shrink-0 h-screen sticky top-0
-        bg-card text-primary border-r border-border shadow-sm
+        bg-background text-primary border-r border-border shadow-sm
         transition-all duration-300 ease-in-out
         ${isExpanded ? "w-64" : "w-20"}
       `}

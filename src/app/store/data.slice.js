@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  transactions: [],
+  todayTransactions: [],
   summary: {
     income: 0,
     expense: 0,
@@ -15,7 +15,9 @@ export const dataSlice = createSlice({
   reducers: {
     setDashboard: (state, action) => {
       const { transactions, summary } = action.payload;
-      return { transactions, summary };
+
+      state.todayTransactions = transactions;
+      state.summary = summary;
     },
     resetDashboard: () => initialState,
   },

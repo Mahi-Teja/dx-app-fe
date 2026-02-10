@@ -32,7 +32,7 @@ export const fetchDashboardData =
             expense: 0,
             balance: 0,
           },
-        })
+        }),
       );
     } catch (err) {
       console.error("Dashboard Fetch Error:", err);
