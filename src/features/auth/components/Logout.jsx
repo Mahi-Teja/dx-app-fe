@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { performLogout } from "../store/logout.thunk.js";
 
-const Logout = ({ isExpanded = true, variant }) => {
+const Logout = ({ isExpanded = true, variant, className }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -16,7 +16,11 @@ const Logout = ({ isExpanded = true, variant }) => {
   };
 
   return (
-    <Button onClick={handleLogout} className=" justify-start" variant={variant}>
+    <Button
+      onClick={handleLogout}
+      className={`justify-start ${className}`}
+      variant={variant}
+    >
       <LogOut className="mr-2 h-4 w-4 shrink-0" />
 
       <span
