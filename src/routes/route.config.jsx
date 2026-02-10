@@ -73,11 +73,6 @@ const routes = [
         title: "settings",
       },
       {
-        path: "/reports",
-        element: <Reports />,
-        title: "reports",
-      },
-      {
         path: "/analytics",
         element: <Analytics />,
         title: "analytics",
