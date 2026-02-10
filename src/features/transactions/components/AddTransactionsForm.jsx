@@ -122,7 +122,7 @@ const TransactionForm = ({
       description: data.description || undefined,
       note: data.note || undefined,
       timezone,
-      occurredAt: new Date(data.occurredAt).toISOString(),
+      occurredAt: new Date(data.occurredAt),
     };
 
     const exec = async () => {

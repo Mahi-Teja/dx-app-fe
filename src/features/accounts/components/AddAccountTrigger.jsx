@@ -8,8 +8,8 @@ const AddAccountTrigger = () => {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>
-        <Plus className="mr-2 h-4 w-4" />
+      <Button className={`text-xs md:text-sm`} onClick={() => setOpen(true)}>
+        <Plus className=" " />
         Add Account
       </Button>
 

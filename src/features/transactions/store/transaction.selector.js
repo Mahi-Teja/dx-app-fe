@@ -15,13 +15,13 @@ export const selectTransactionsByDate = createSelector(
 
     // This expensive filtering only runs if transactions or selectedDate changes
     return transactions.filter((txn) =>
-      txn.occurredAt.startsWith(selectedDate)
+      txn.occurredAt.startsWith(selectedDate),
     );
-  }
+  },
 );
 export const selectTransactionView = (txn, accounts, categories) => {
   const account = accounts?.find(
-    (a) => a._id === txn.accountId && !a.isDeleted
+    (a) => a._id === txn.accountId && !a.isDeleted,
   );
 
   const toAccount =
@@ -50,12 +50,21 @@ export const TxnFullList = ({
     const AccId = txn.accountId;
     const CatId = txn.categoryId;
     const isDeleted = txn.isDeleted;
+    let toAccount = {};
     if (isDeleted) return null;
-
     const account = accounts.find((acc) => acc._id === AccId);
     const category = categories.find((cat) => cat._id === CatId);
 
     // if (!account || !category) return null;
+    if (txn.type === "transfer") {
+      toAccount = accounts.find((acc) => acc._id === txn.toAccountId);
+      return {
+        category,
+        account,
+        toAccount,
+        ...txn,
+      };
+    }
 
     return {
       category,
