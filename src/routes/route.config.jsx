@@ -10,7 +10,6 @@ import EmptyStateNoAction from "@/components/EmptyStateNoAction";
 import NotFound from "@/pages/NotFound";
 import SignOut from "@/pages/SignOut";
 import { DownloadList } from "@/pages/DownloadList";
-import { Reports } from "@/pages/Reports";
 import { Analytics } from "@/pages/analytics/Analytics";
 
 const routes = [
