@@ -15,7 +15,7 @@ const Settings = () => {
         <div className="flex items-center justify-between px-4 md:px-6 py-4">
           <h1 className="text-lg md:text-xl font-semibold">Settings</h1>
           <div className="md:hidden">
-            <Logout variant="destructive" />
+            <Logout variant="destructive" className={"bg-muted"} />
           </div>
         </div>
       </header>
@@ -132,17 +132,43 @@ const Settings = () => {
         </div>
 
         {/* Footer */}
-        <footer className="text-center text-xs text-muted-foreground pb-14 pt-2 md:pt-4 md:pb-0 ">
-          made with ❤️ by{" "}
-          <a
-            className="underline"
-            target="blank"
-            href="https://www.anempty.com"
-          >
-            Mahi
-          </a>
+        <footer className="border-t bg-background px-6 py-8 text-sm text-muted-foreground">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              {/* BRAND */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-semibold text-foreground">
+                    Dx Tracker
+                  </span>
+                  <span className="rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium">
+                    v{import.meta.env.VITE_APP_VERSION}
+                  </span>
+                </div>
+                <p className="max-w-xs text-xs leading-relaxed">
+                  Smart insights for your daily finances. Track income and
+                  expenses with clarity.
+                </p>
+                <span className="text-[11px] opacity-70">
+                  © {new Date().getFullYear()} Dx Tracker
+                </span>
+                <div className="flex   items-center gap-1">
+                  <span>Built with ❤️ by</span>
+                  <a
+                    href="https://www.anempty.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-muted-foreground underline-offset-4 hover:underline"
+                  >
+                    Mahi
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </footer>
       </div>
+      <p className="h-16 md:h-0"></p>
     </section>
   );
 };
