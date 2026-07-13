@@ -190,7 +190,9 @@ const Login = () => {
                       {showPassword ? "Hide" : "Show"}
                     </button>
                   </div>
-                  <FieldDescription>Minimum 8 characters</FieldDescription>
+                  <FieldDescription>
+                    <Link to={"/forgot-password"}>Forgot Password?</Link>
+                  </FieldDescription>
                   {errors.password && (
                     <FieldError>{errors.password.message}</FieldError>
                   )}

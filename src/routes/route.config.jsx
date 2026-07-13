@@ -11,6 +11,9 @@ import NotFound from "@/pages/NotFound";
 import SignOut from "@/pages/SignOut";
 import { DownloadList } from "@/pages/DownloadList";
 import { Analytics } from "@/pages/analytics/Analytics";
+import ForgotPassword from "@/pages/ForgotPassword";
+import ResetPassword from "@/pages/ResetPassword";
+import VerifyPassword from "@/pages/verifyPassword";
 
 const routes = [
   {
@@ -44,6 +47,21 @@ const routes = [
     path: "/logout",
     element: <SignOut />,
     title: "Login",
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+    title: "Forgot Password",
+  },
+  {
+    path: "/verify-reset-password/:token",
+    element: <VerifyPassword />,
+    title: "Verify Password",
+  },
+  {
+    path: "/reset-password/:token",
+    element: <ResetPassword />,
+    title: "Reset Password",
   },
   {
     element: (
