@@ -23,8 +23,6 @@ const VerifyPassword = () => {
         if (data.data.isValid) {
           setStatus("valid");
         }
-
-        setStatus("invalid");
       } catch (err) {
         setStatus("invalid");
       }
